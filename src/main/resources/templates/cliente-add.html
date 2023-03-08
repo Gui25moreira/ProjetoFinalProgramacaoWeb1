@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout (~{:: main})}">
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+<main>
+    <form th:action="${add} ? @{/cliente/add} : @{/cliente/{clienteId}/edit(clienteId=${cliente.id})}"
+          th:object="${cliente}" th:method="${add} ? POST : PUT">
+        <div class="container">
+            <h1 th:text="${add} ? 'Cadastrar cliente' : 'Editar cliente'"></h1>
+            <div th:if="${cliente.id}" class="mb-3 row">
+                <label for="inputId" class="col-sm-2 col-form-label">Id</label>
+                <div class="col-sm-3">
+                    <input type="text" th:readonly="${add} ? 'false' : 'true'" th:field="${cliente.id}" class="form-control" id="inputId">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputNome" class="col-sm-2 col-form-label">Nome</label>
+                <div class="col-sm-3">
+                    <input type="text" th:readonly="${add} ? 'false' : 'true'" th:field="*{nome}" class="form-control" id="inputNome">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputCpf" class="col-sm-2 col-form-label">Cpf</label>
+                <div class="col-sm-3">
+                    <input type="text" th:field="*{cpf}" class="form-control" id="inputCpf">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputEndereco" class="col-sm-2 col-form-label">Endereço</label>
+                <div class="col-sm-3">
+                    <input type="text" th:field="*{endereco}" class="form-control" id="inputEndereco">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputContato" class="col-sm-2 col-form-label">Contato</label>
+                <div class="col-sm-3">
+                    <input type="text" th:field="*{contato}" class="form-control" id="inputContato">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="inputSenha" class="col-sm-2 col-form-label">Senha</label>
+                <div class="col-sm-3">
+                    <input type="text" th:field="*{senha}" class="form-control" id="inputSenha">
+                </div>
+            </div>
+            <input type="submit" value="Gravar" class="btn btn-primary mb-3"/>
+            <br/><br/>
+            <a th:href="@{/clientes}">Voltar</a>
+        </div>
+    </form>
+    <br/>
+</main>
+</body>
+</html>
