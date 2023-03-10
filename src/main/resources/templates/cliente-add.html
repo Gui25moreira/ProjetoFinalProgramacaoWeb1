@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{base :: layout (~{:: main})}">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
 </head>
 <body>
 <main>
@@ -12,37 +12,54 @@
             <div th:if="${cliente.id}" class="mb-3 row">
                 <label for="inputId" class="col-sm-2 col-form-label">Id</label>
                 <div class="col-sm-3">
-                    <input type="text" th:readonly="${add} ? 'false' : 'true'" th:field="${cliente.id}" class="form-control" id="inputId">
+                    <input type="text" th:readonly="${add} ? 'false' : 'true'" th:field="${cliente.id}"
+                           class="form-control" id="inputId">
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="inputNome" class="col-sm-2 col-form-label">Nome</label>
                 <div class="col-sm-3">
-                    <input type="text" th:readonly="${add} ? 'false' : 'true'" th:field="*{nome}" class="form-control" id="inputNome">
+                    <input type="text" placeholder="Digite o seu nome" th:readonly="${add} ? 'false' : 'true'" th:field="*{nome}" class="form-control"
+                           id="inputNome">
+                    <ul>
+                        <li th:each="erro : ${#fields.errors('nome')}" th:text="${erro}" />
+                    </ul>
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="inputCpf" class="col-sm-2 col-form-label">Cpf</label>
                 <div class="col-sm-3">
-                    <input type="text" th:field="*{cpf}" class="form-control" id="inputCpf">
+                    <input type="text" placeholder="Digite o seu cpf" th:field="*{cpf}" class="form-control" id="inputCpf">
+                    <ul>
+                        <li th:each="erro : ${#fields.errors('cpf')}" th:text="${erro}" />
+                    </ul>
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="inputEndereco" class="col-sm-2 col-form-label">Endereço</label>
                 <div class="col-sm-3">
-                    <input type="text" th:field="*{endereco}" class="form-control" id="inputEndereco">
+                    <input type="text" placeholder="Digite o seu endereço" th:field="*{endereco}" class="form-control" id="inputEndereco">
+                    <ul>
+                        <li th:each="erro : ${#fields.errors('endereco')}" th:text="${erro}" />
+                    </ul>
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="inputContato" class="col-sm-2 col-form-label">Contato</label>
                 <div class="col-sm-3">
-                    <input type="text" th:field="*{contato}" class="form-control" id="inputContato">
+                    <input type="text" placeholder="Digite o seu contato" th:field="*{contato}" class="form-control" id="inputContato">
+                    <ul>
+                        <li th:each="erro : ${#fields.errors('contato')}" th:text="${erro}" />
+                    </ul>
                 </div>
             </div>
             <div class="mb-3 row">
                 <label for="inputSenha" class="col-sm-2 col-form-label">Senha</label>
                 <div class="col-sm-3">
-                    <input type="text" th:field="*{senha}" class="form-control" id="inputSenha">
+                    <input type="text" placeholder="Digite a sua senha" th:field="*{senha}" class="form-control" id="inputSenha">
+                    <ul>
+                        <li th:each="erro : ${#fields.errors('senha')}" th:text="${erro}" />
+                    </ul>
                 </div>
             </div>
             <input type="submit" value="Gravar" class="btn btn-primary mb-3"/>

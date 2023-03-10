@@ -3,6 +3,9 @@ package gui.projetoFinalJavaWeb1.service;
 import gui.projetoFinalJavaWeb1.model.Cliente;
 import gui.projetoFinalJavaWeb1.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +23,10 @@ public class ClienteService {
 
     public List<Cliente> listarTodos(){
         return this.clienteRepository.findAll();
+    }
+    public Page<Cliente> listarPaginado(Integer numeroPagina, Integer tamanhoPagina){
+        return this.clienteRepository.
+                findAll(PageRequest.of(numeroPagina,tamanhoPagina, Sort.by(Sort.Order.asc("id"))));
     }
 
     public Optional<Cliente> buscarClientePorId(Long id){
